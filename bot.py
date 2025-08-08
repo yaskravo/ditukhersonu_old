@@ -136,7 +136,7 @@ def team_handler(message):
     chat_id = str(message.chat.id)
     bot.send_message(
         chat_id,
-        "This bot is based on the original project available at https://github.com/yaskravo/ditukhersonu_old. All credit for the original creation goes to **yaskravo**."
+        "This bot is based on the original project available at https://github.com/yaskravo/ditukhersonu_old. All credit for the original creation goes to yaskravo."
     )
     send_main_menu(chat_id)
 
@@ -151,7 +151,7 @@ def admin_panel(chat_id):
 
 @bot.message_handler(commands=['admin'])
 def admin_command(message):
-    if str(message.chat.id) == "YOUR_ID_TELEGRAM":
+    if str(message.chat.id) == "5866560696":
         admin_panel(message.chat.id)
     else:
         bot.send_message(message.chat.id, "У вас немає адмін прав.")
