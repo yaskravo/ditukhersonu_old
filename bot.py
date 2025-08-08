@@ -26,7 +26,7 @@ users_data = load_user_data()
 
 def send_main_menu(chat_id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add(KeyboardButton('🇺🇦 Клік'), KeyboardButton('⭐️ Таблиця лідерів'), KeyboardButton('👥 Команда проєкту'))
+    markup.add(KeyboardButton('🇺🇦 Клік'), KeyboardButton('⭐️ Таблиця лідерів'), KeyboardButton('👥 About us'))
 
     user_info = users_data.get(str(chat_id), {"nickname": "Невідомий", "account": 0, "channel": "Ніхто"})
     nickname = user_info["nickname"]
