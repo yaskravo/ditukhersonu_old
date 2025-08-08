@@ -4,7 +4,7 @@ import json
 import os
 
 # Ініціалізація бота
-bot = telebot.TeleBot('TELEGRAM-BOT-TOKEN')
+bot = telebot.TeleBot('TELEGRAM_BOT_TOKEN')
 
 # Шлях до файлу з даними користувачів
 USER_DATA_FILE = 'user_data.json'
@@ -163,7 +163,6 @@ def admin_panel(chat_id):
     markup.add(KeyboardButton('💰 Додати до рахунку користувача'), KeyboardButton('📰 Відправити новину'))
     bot.send_message(chat_id, "Адмін-панель", reply_markup=markup)
 
-# Обробка команд
 @bot.message_handler(commands=['admin'])
 def admin_command(message):
     if str(message.chat.id) == "YOUR_ID_TELEGRAM":
@@ -171,7 +170,6 @@ def admin_command(message):
     else:
         bot.send_message(message.chat.id, "У вас немає адмін прав.")
 
-# Обробка кнопки "🔒 Видалити та заблокувати користувача"
 @bot.message_handler(func=lambda message: message.text == '🔒 Видалити та заблокувати користувача')
 def delete_user_prompt(message):
     bot.send_message(message.chat.id, "Введіть нікнейм або ID користувача для блокування:")
@@ -199,7 +197,6 @@ def block_user(message, user_identifier, reason):
         bot.send_message(message.chat.id, "Блокування скасовано.")
     admin_panel(message.chat.id)
 
-# Обробка кнопки "💰 Додати до рахунку користувача"
 @bot.message_handler(func=lambda message: message.text == '💰 Додати до рахунку користувача')
 def add_account_prompt(message):
     bot.send_message(message.chat.id, "Введіть ID користувача для додавання до рахунку:")
@@ -224,7 +221,6 @@ def update_account(message, user_identifier):
         bot.send_message(message.chat.id, "Будь ласка, введіть дійсне число для рахунку.")
     admin_panel(message.chat.id)
 
-# Обробка кнопки "✏️ Змінити нікнейм користувача"
 @bot.message_handler(func=lambda message: message.text == '✏️ Змінити нікнейм користувача')
 def change_nickname_prompt(message):
     bot.send_message(message.chat.id, "Введіть нікнейм або ID користувача для зміни нікнейму:")
@@ -247,7 +243,6 @@ def update_nickname(message, user_identifier):
     bot.send_message(message.chat.id, f"Нікнейм користувача {old_nickname} змінено на {new_nickname}.")
     admin_panel(message.chat.id)
 
-# Обробка кнопки "📰 Відправити новину"
 @bot.message_handler(func=lambda message: message.text == '📰 Відправити новину')
 def send_news_prompt(message):
     bot.send_message(message.chat.id, "Введіть новину:")
