@@ -1,8 +1,8 @@
 # Ditu.Khersonu
 
-> ⚠️ Це застаріла версія бота Ditu.Khersonu. Актуальну дивіться [**у цьому**](https://github.com/yaskravo/ditukhersonu) репозиторії.
-
 <img src="https://i.ibb.co/hRqV6wL5/dtkhersonuold.png" alt="Ditu.Khersonu" width="1200"/>
+
+Ditu.Khersonu — це благодійний проєкт, створений спільнотою українського інтернет-телебачення. Ваше завдання — натискати на кнопку, яка збільшує ваш внесок. З кожного кліку 0,00002 грн надходить на допомогу дітям Херсонщини.
 
 ## Про проєкт
 
@@ -15,23 +15,23 @@
 
 ## Як запустити
 
-1. Клонувати репозиторій:
+1. Клонуйте репозиторій:
 
    ```bash
    git clone https://github.com/yourusername/ditu.khersonu.git
    cd ditu.khersonu
    ```
 
-2. Встановити залежності:
+2. Встановіть залежності:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Запустити бота:
+3. Запустіть бота:
 
    ```bash
    python bot.py
    ```
 
-> ⚠️ Перед запуском потрібно додати ваш `TELEGRAM_BOT_TOKEN` у файл `.env` або напряму в код.
+> ⚠️ Перед запуском потрібно додати ваш `TELEGRAM_BOT_TOKEN` напряму в код.
