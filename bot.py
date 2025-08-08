@@ -3,36 +3,27 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import json
 import os
 
-# Ініціалізація бота
 bot = telebot.TeleBot('TELEGRAM_BOT_TOKEN')
 
-# Шлях до файлу з даними користувачів
 USER_DATA_FILE = 'user_data.json'
 
-# Ініціалізація файлу з даними користувачів
 def initialize_user_data_file():
-    # Якщо файл не існує, створюємо його
     if not os.path.exists(USER_DATA_FILE):
         with open(USER_DATA_FILE, 'w') as file:
             json.dump({}, file)
 
-# Завантаження даних користувачів з файлу
 def load_user_data():
     with open(USER_DATA_FILE, 'r') as file:
         return json.load(file)
 
-# Збереження даних користувачів у файл
 def save_user_data():
     with open(USER_DATA_FILE, 'w') as file:
         json.dump(users_data, file)
 
-# Ініціалізація файлів
 initialize_user_data_file()
 
-# Завантаження даних користувачів
 users_data = load_user_data()
 
-# Головне меню
 def send_main_menu(chat_id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     markup.add(KeyboardButton('🇺🇦 Клік'), KeyboardButton('⭐️ Таблиця лідерів'), KeyboardButton('👥 Команда проєкту'))
@@ -52,16 +43,13 @@ def send_main_menu(chat_id):
     )
     bot.send_message(chat_id, text, reply_markup=markup)
 
-# Стартова команда
 @bot.message_handler(commands=['start'])
 def start_handler(message):
     chat_id = str(message.chat.id)
 
     if chat_id in users_data:
-        # Якщо користувач вже зареєстрований, надсилаємо головне меню
         send_main_menu(chat_id)
     else:
-        # Якщо користувач новий, розпочинаємо процес реєстрації
         markup = ReplyKeyboardMarkup(resize_keyboard=True)
         markup.add(KeyboardButton('Так!'))
         bot.send_message(
@@ -79,7 +67,6 @@ def agreement_handler(message):
     chat_id = str(message.chat.id)
     bot.send_message(chat_id, "😜 Розпочинаємо реєстрацію!\n\nВведіть нікнейм, який буде відображатися в таблиці лідерів.")
 
-    # Зберігаємо стан реєстрації
     users_data[chat_id] = {"registration_step": "nickname"}
     save_user_data()
 
@@ -144,13 +131,12 @@ def back_handler(message):
     chat_id = str(message.chat.id)
     send_main_menu(chat_id)
 
-# Обробка натискання кнопки "👥 Команда проєкту"
-@bot.message_handler(func=lambda message: message.text == '👥 Команда проєкту')
+@bot.message_handler(func=lambda message: message.text == '👥 About us')
 def team_handler(message):
     chat_id = str(message.chat.id)
     bot.send_message(
         chat_id,
-        "This bot is based on the original project available at [https://github.com/yaskravo/ditukhersonu_old](https://github.com/yaskravo/ditukhersonu_old). All credit for the original creation goes to **yaskravo**."
+        "This bot is based on the original project available at https://github.com/yaskravo/ditukhersonu_old. All credit for the original creation goes to **yaskravo**."
     )
     send_main_menu(chat_id)
 
