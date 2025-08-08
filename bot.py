@@ -151,7 +151,7 @@ def admin_panel(chat_id):
 
 @bot.message_handler(commands=['admin'])
 def admin_command(message):
-    if str(message.chat.id) == "5866560696":
+    if str(message.chat.id) == "YOUR_TELEGRAM_ID":
         admin_panel(message.chat.id)
     else:
         bot.send_message(message.chat.id, "У вас немає адмін прав.")
